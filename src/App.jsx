@@ -41,7 +41,7 @@ function AccordionItems({ num, title, message }) {
   }
 
   return (
-    <div className="faq" onClick={handleToggle}>
+    <div className={`faq ${isOpen? "open" : ""}`} onClick={handleToggle}>
       <div className="faqHeader flex space-between items-center">
         <div className="text flex">
           <div className="num mr">{num <= 9 ? `0${num + 1}` : num}</div>

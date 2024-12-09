@@ -62,9 +62,8 @@
   cursor: pointer;
 }
 
-.faqHeader{
-  font-weight: bold;
-  /* margin-bottom: 10px; */
+.open{
+  border-top: 4px solid lightseagreen;
 }
 
 .mr{
@@ -73,6 +72,12 @@
 
 .num{
   color: lightgray;
+  font-weight: 500;
+}
+
+.open .num, .open .title{
+  border-top: none;
+  color: lightseagreen;
 }
 
 .message{
