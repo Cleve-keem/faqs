@@ -28,20 +28,28 @@ function App() {
 }
 
 function Accordion({ data }) {
+  const [curOpen, setIsOpen] = useState(null);
+
   return data.map((faq, i) => (
-    <AccordionItems title={faq.title} message={faq.message} num={i} key={i} />
+    <AccordionItems
+      onOpen={setIsOpen}
+      curOpen={curOpen}
+      title={faq.title}
+      num={i}
+      key={i}
+    >{faq.message}</AccordionItems>
   ));
 }
 
-function AccordionItems({ num, title, message }) {
-  const [isOpen, setIsOpen] = useState(true);
+function AccordionItems({ num, title, onOpen, curOpen, children }) {
+  const isOpen = num === curOpen;
 
-  function handleToggle(){
-    setIsOpen((prev)=> !prev)
+  function handleToggle() {
+    onOpen(num);
   }
 
   return (
-    <div className={`faq ${isOpen? "open" : ""}`} onClick={handleToggle}>
+    <div className={`faq ${isOpen ? "open" : ""}`} onClick={handleToggle}>
       <div className="faqHeader flex space-between items-center">
         <div className="text flex">
           <div className="num mr">{num <= 9 ? `0${num + 1}` : num}</div>
@@ -49,7 +57,7 @@ function AccordionItems({ num, title, message }) {
         </div>
         <div className="toggle">{isOpen ? "-" : "+"}</div>
       </div>
-      {isOpen && <div className="message">{message}</div>}
+      {isOpen && <div className="message">{children}</div>}
     </div>
   );
 }
